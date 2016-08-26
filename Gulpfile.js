@@ -4,6 +4,8 @@ var sass = require('gulp-sass')
 var uglify = require('gulp-uglify')
 var _if = require('gulp-if')
 var streamify = require('gulp-streamify')
+var livereload = require('gulp-livereload')
+var inject = require('gulp-inject-string')
 var browserify = require('browserify')
 var watchify = require('watchify')
 var babelify = require('babelify')
@@ -14,6 +16,7 @@ var paths = {
   scss: 'src/scss/**/*.scss'
 }
 
+var livereloadPort = process.env.LR_PORT ? process.env.LR_PORT : 3000
 var dev = process.env.NODE_ENV !== 'production'
 var sassOutput = dev ? 'nested' : 'compressed'
 
@@ -22,11 +25,14 @@ gulp.task('css', function () {
     .pipe(sass({ outputStyle: sassOutput })
       .on('error', sass.logError))
     .pipe(gulp.dest('./dist/css'))
+    .pipe(livereload())
 })
 
 gulp.task('html', function () {
   return gulp.src(paths.html)
+    .pipe(_if(dev, inject.append(`<script src="http://localhost:${livereloadPort}/livereload.js?snipver=1"></script>`)))
     .pipe(gulp.dest('./dist'))
+    .pipe(livereload())
 })
 
 gulp.task('watch', function () {
@@ -52,6 +58,7 @@ function buildScript (file, watch) {
       .pipe(source(file))
       .pipe(_if(!dev, streamify(uglify())))
       .pipe(gulp.dest('./dist/js'))
+      .pipe(livereload())
   }
 
   bundler.on('update', function () {
@@ -68,5 +75,6 @@ gulp.task('js', function () {
 gulp.task('build', [ 'html', 'css', 'js' ])
 
 gulp.task('default', [ 'build', 'watch' ], function () {
+  livereload.listen({port: livereloadPort})
   return buildScript('main.js', true)
 })

@@ -19,6 +19,8 @@
     "eslint-plugin-standard": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-if": "^2.0.1",
+    "gulp-inject-string": "^1.1.0",
+    "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.3.2",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
