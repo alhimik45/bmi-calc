@@ -4,6 +4,7 @@ var sass = require('gulp-sass')
 var uglify = require('gulp-uglify')
 var _if = require('gulp-if')
 var streamify = require('gulp-streamify')
+var sourcemaps = require('gulp-sourcemaps')
 var livereload = require('gulp-livereload')
 var inject = require('gulp-inject-string')
 var browserify = require('browserify')
@@ -22,8 +23,10 @@ var sassOutput = dev ? 'nested' : 'compressed'
 
 gulp.task('css', function () {
   return gulp.src(paths.scss)
+    .pipe(sourcemaps.init())
     .pipe(sass({ outputStyle: sassOutput })
       .on('error', sass.logError))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/css'))
     .pipe(livereload())
 })
@@ -75,6 +78,6 @@ gulp.task('js', function () {
 gulp.task('build', [ 'html', 'css', 'js' ])
 
 gulp.task('default', [ 'build', 'watch' ], function () {
-  livereload.listen({port: livereloadPort})
+  livereload.listen({ port: livereloadPort })
   return buildScript('main.js', true)
 })

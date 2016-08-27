@@ -22,6 +22,7 @@
     "gulp-inject-string": "^1.1.0",
     "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
     "mocha": "^3.0.2",
