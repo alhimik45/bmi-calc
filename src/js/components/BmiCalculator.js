@@ -1,5 +1,5 @@
 import most from 'most'
-import { b } from '@cycle/dom'
+import { div } from '@cycle/dom'
 import isolate from '@cycle/isolate'
 import R from 'ramda'
 
@@ -28,7 +28,9 @@ export function model ({ change$, props$ }) {
 
 export function view (state$) {
   return state$.map(({ bmi, label }) =>
-    b(`${label} ${bmi}`)
+    div('.bmi-calculator-component', [
+      div('.bmi-label', `${label} ${bmi}`)
+    ])
   )
 }
 

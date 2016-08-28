@@ -1,6 +1,6 @@
 import most from 'most'
 import Cycle from '@cycle/most-run'
-import { makeDOMDriver, p, div, h1 } from '@cycle/dom'
+import { makeDOMDriver, div, header } from '@cycle/dom'
 import Slider from './components/Slider'
 import BmiCalculator from './components/BmiCalculator'
 
@@ -34,12 +34,18 @@ function main ({ DOM }) {
   })
 
   return {
-    DOM: most.combineArray((weightVTree, heightVTree, calculatorVTree) => div([
-      h1('BMI calculator'),
-      p([ weightVTree ]),
-      p([ heightVTree ]),
-      p([ calculatorVTree ])
-    ]), [ weightSlider.DOM, HeightSlider.DOM, calculator.DOM ])
+    DOM: most.combineArray((weightVTree, heightVTree, calculatorVTree) =>
+      div([
+        header('BMI calculator'),
+        div('.pad'),
+        div('.sliders', [
+          div('.slider-wrap', [ weightVTree ]),
+          div('.pad-xs'),
+          div('.slider-wrap', [ heightVTree ])
+        ]),
+        div('.pad'),
+        div('.bmi', [ calculatorVTree ])
+      ]), [ weightSlider.DOM, HeightSlider.DOM, calculator.DOM ])
   }
 }
 

@@ -1,0 +1,22 @@
+@import "../grid";
+
+.slider-component {
+  @include gridle_row();
+  @include row_middle();
+  .slider-label {
+    @include gridle_grid (6);
+    label {
+      @include gridle_grid (12);
+      text-align: center;
+    }
+  }
+
+  .inputs {
+    @include gridle (6);
+    input {
+      @include gridle_grid (10);
+      @include gridle_grid_centered ();
+      margin: 0;
+    }
+  }
+}

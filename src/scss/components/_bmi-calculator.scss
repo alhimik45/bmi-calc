@@ -1,0 +1,10 @@
+@import "../grid";
+
+.bmi-calculator-component {
+  @include gridle_row();
+  .bmi-label {
+    @include gridle_grid(12);
+    font-weight: bold;
+    text-align: center;
+  }
+}

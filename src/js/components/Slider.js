@@ -1,4 +1,4 @@
-import { label, div, input, br } from '@cycle/dom'
+import { label, div, input } from '@cycle/dom'
 import isolate from '@cycle/isolate'
 import R from 'ramda'
 
@@ -26,12 +26,14 @@ export function model ({ change$, props$ }) {
 
 export function view (state$) {
   return state$.map(({ value, label: labelStr, unit, min, max }) =>
-    div([
-      label(`${labelStr}: ${value} ${unit}`),
-      br(),
-      input('.slider', { props: { type: 'range', min, max, value } }),
-      br(),
-      input('.number', { props: { type: 'number', min, max, value } })
+    div('.slider-component', [
+      div('.slider-label', [
+        label(`${labelStr}: ${value} ${unit}`)
+      ]),
+      div('.inputs', [
+        input('.slider.range', { props: { type: 'range', min, max, value } }),
+        input('.number.text-input', { props: { type: 'number', min, max, value } })
+      ])
     ])
   )
 }

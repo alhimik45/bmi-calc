@@ -1,0 +1,40 @@
+@import "grid";
+@import "components/slider";
+@import "components/bmi-calculator";
+
+#app {
+  @include gridle_grid(12);
+  @include gridle_state(lg) {
+    @include gridle(8 prefix 2 suffix 2);
+  }
+}
+
+header {
+  @include gridle_grid(12);
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.sliders {
+  @include gridle_row();
+}
+
+.slider-wrap {
+  @include gridle_grid (6);
+  @include gridle_state(xs) {
+    @include gridle_grid(12);
+  }
+}
+
+.pad {
+  @include gridle_grid (12);
+  height: 1em;
+}
+
+.pad-xs {
+  @extend .pad;
+  @include gridle_hide();
+  @include gridle_state(xs) {
+    @include gridle_show();
+  }
+}
