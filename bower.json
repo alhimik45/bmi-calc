@@ -1,0 +1,17 @@
+{
+  "name": "bmi",
+  "description": "bmi calc in cycle.js",
+  "main": "",
+  "authors": [
+    "alhimik45"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "bmi",
+    "cycle"
+  ],
+  "homepage": "https://github.com/alhimik45/bmi-calc",
+  "dependencies": {
+    "gridle": "^2.0.48"
+  }
+}
